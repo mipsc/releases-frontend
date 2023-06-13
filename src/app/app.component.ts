@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ReleasesService} from "./services/releases.service";
+import {ReleaseType} from "./types/ReleaseType";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'releases-forntend';
+  public selectedDate: Date;
+  public releaseType: ReleaseType = "All";
+  public loading: boolean = false;
+  constructor(private releasesService: ReleasesService) {
+    this.selectedDate = new Date();
+    releasesService.getFetcherSubject().subscribe(result => this.loading = false);
+  }
+  public getReleases(): void {
+    this.releasesService.fetchReleases(this.selectedDate,
+      this.releaseType);
+    this.loading = true;
+  }
 }

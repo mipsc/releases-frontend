@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ReleaseType} from "../../types/ReleaseType";
 
 @Component({
   selector: 'app-release-type',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./release-type.component.css']
 })
 export class ReleaseTypeComponent {
+  @Input() selectedOption: ReleaseType = "All";
+  @Output() selectedOptionChange: EventEmitter<ReleaseType>;
+
+  constructor() {
+    this.selectedOptionChange = new EventEmitter<ReleaseType>();
+  }
+
+  public handleSelectionChange() {
+    this.selectedOptionChange.emit(this.selectedOption);
+  }
 
 }

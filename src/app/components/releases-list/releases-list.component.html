@@ -1,1 +1,14 @@
-<p>releases-list works!</p>
+<div style="padding-top: 1em;">
+  <div *ngFor="let release of releasesList">
+    <div>
+      Release version: {{release.version}}
+    </div>
+    <div>
+      Created at: {{release.createdAt}}
+    </div>
+    <div>
+      Release type: {{release.releaseType}}
+    </div>
+    <br>
+  </div>
+</div>

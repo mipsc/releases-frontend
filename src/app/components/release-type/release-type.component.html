@@ -1,1 +1,5 @@
-<p>release-type works!</p>
+<select [(ngModel)]="selectedOption" (ngModelChange)="handleSelectionChange()">
+  <option>All</option>
+  <option>Release</option>
+  <option>Prerelease</option>
+</select>
